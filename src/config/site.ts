@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "BuddyDays",
-  tagline: "A happier everyday with pets",
-  description: "BuddyDays shares thoughtful stories and practical guides for people who live with dogs and cats.",
+  tagline: "Better days, together.",
+  description: "Practical, thoughtful guides and everyday ideas for people who share their homes with dogs and cats.",
   locale: "en_US",
   language: "en",
   market: "US",

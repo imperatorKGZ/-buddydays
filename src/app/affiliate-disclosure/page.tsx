@@ -1,7 +1,24 @@
 import { createPageMetadata } from "@/lib/seo/metadata";
 
-export const metadata = createPageMetadata("Affiliate Disclosure", "BuddyDays may participate in affiliate programs.");
+export const metadata = {
+  ...createPageMetadata("Affiliate Disclosure", "The current BuddyDays website does not use affiliate links."),
+  robots: { index: false, follow: false },
+};
 
-export default function Page() {
-  return <main className="page-shell"><p className="eyebrow">BuddyDays</p><h1>Affiliate Disclosure</h1><p>BuddyDays may participate in affiliate programs.</p><div className="surface"><p>Some links may be affiliate links. BuddyDays may earn a commission from qualifying purchases at no additional cost to you. As an Amazon Associate I earn from qualifying purchases. Publish this statement only while it accurately reflects actual participation in the Amazon Associates Program.</p></div></main>;
+export default function AffiliateDisclosurePage() {
+  return (
+    <main className="page-shell stack">
+      <p className="eyebrow">BuddyDays</p>
+      <h1>Affiliate Disclosure</h1>
+      <p>
+        BuddyDays does not currently use affiliate links or participate in
+        affiliate programs. The initial launch is focused on editorial
+        content, not product sales or commissions.
+      </p>
+      <p>
+        If this changes, we will update this page and clearly disclose any
+        material relationship near the relevant link or recommendation.
+      </p>
+    </main>
+  );
 }

@@ -15,5 +15,5 @@ export default async function CatCategoryPage({ params }: { params: Promise<{ ca
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
   const { category: slug } = await params;
   const category = productCategories.find((item) => item.slug === slug && item.species === "cat");
-  return category ? createPageMetadata(`${category.label} for Cats`, category.description) : {};
+  return category ? { ...createPageMetadata(`${category.label} for Cats`, category.description), robots: { index: false, follow: false } } : {};
 }
