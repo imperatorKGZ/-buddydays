@@ -156,7 +156,7 @@ export function BlogBrowser({ variant = "page", initialSpecies = "all", initialC
                 <option value="oldest">Oldest</option>
                 <option value="az">Title A–Z</option>
                 <option value="za">Title Z–A</option>
-                <option value="editors">Editor's picks</option>
+                <option value="editors">Editor&apos;s picks</option>
               </select>
             </label>
           </div>
