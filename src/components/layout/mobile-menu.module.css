@@ -1,0 +1,63 @@
+.container { position: relative; }
+@media (max-width: 760px) {
+  .container :global(.mobile-nav.is-open) {
+    display: grid;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    min-width: 210px;
+    z-index: 20;
+  }
+}
+
+/* BUDDYDAYS_STAGE_1_1_MOBILE_REFINEMENT */
+@media (max-width: 760px) {
+  .container :global(.mobile-nav.is-open) {
+    width: min(280px, calc(100vw - 32px));
+    min-width: 0;
+    max-width: calc(100vw - 32px);
+    padding: 10px;
+    gap: 4px;
+    border: 1px solid rgba(38, 52, 45, .12);
+    border-radius: 18px;
+    background: #faf8f3;
+    box-shadow: 0 16px 34px rgba(35, 45, 40, .14);
+    z-index: 30;
+  }
+
+  .container :global(.mobile-nav.is-open a) {
+    display: flex;
+    min-height: 46px;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 10px;
+    line-height: 1.35;
+  }
+
+  .container :global(.mobile-nav.is-open a:active) {
+    background: rgba(54, 91, 73, .08);
+  }
+}
+
+/* BUDDYDAYS_STAGE_1_2_LAYOUT_ACCESSIBILITY_POLISH */
+.container {
+  position: relative;
+}
+
+@media (max-width: 760px) {
+  .container :global(.mobile-menu-backdrop) {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+  }
+
+  .container :global(.mobile-menu-dialog) {
+    position: fixed;
+    z-index: 51;
+  }
+
+  .container :global(.menu-toggle) {
+    position: relative;
+    z-index: 52;
+  }
+}

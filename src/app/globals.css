@@ -430,3 +430,250 @@
 .footer-links a { color: rgba(234,240,233,.72); font-size: 10px; text-decoration: none; }
 .footer-links a:hover { color: #fff; }
 @media (max-width: 640px) { .footer-links { flex-basis: 100%; } }
+
+/* BUDDYDAYS_STAGE_1_1_MOBILE_REFINEMENT */
+/* Keep the three pet filters in one deliberate row on very narrow phones. */
+@media (max-width: 380px) {
+  .buddydays-reference-homepage .tools-section .pet-tabs {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .buddydays-reference-homepage .tools-section .pet-tab {
+    display: inline-flex;
+    width: 100%;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
+
+/* BUDDYDAYS_STAGE_1_2_LAYOUT_ACCESSIBILITY_POLISH */
+/*
+ * Stage 1.2 — unify the visual container and interaction geometry.
+ * These are scoped overrides. Existing colors, content, routes and layouts remain.
+ */
+:root {
+  --site-container: 1160px;
+  --site-gutter: clamp(16px, 4vw, 24px);
+}
+
+/* Header and footer align to the same 1160px content rail on wide screens. */
+.site-header,
+.site-footer {
+  padding-left: max(var(--site-gutter), calc((100vw - var(--site-container)) / 2));
+  padding-right: max(var(--site-gutter), calc((100vw - var(--site-container)) / 2));
+}
+
+.header-cta {
+  gap: 8px;
+}
+
+/* Keep section containers on the same rail at desktop and tablet widths. */
+.tools-section {
+  padding-left: var(--site-gutter);
+  padding-right: var(--site-gutter);
+}
+
+.tools-inner {
+  width: min(100%, var(--site-container));
+}
+
+section[aria-labelledby="latest-guides-title"] {
+  width: min(
+    calc(100% - var(--site-gutter) - var(--site-gutter)),
+    var(--site-container)
+  );
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Predictable typography without changing the established typefaces. */
+.world h1,
+.world h2,
+.tools-section h2,
+section[aria-labelledby="latest-guides-title"] h2,
+section[aria-labelledby="latest-guides-title"] h3 {
+  text-wrap: balance;
+}
+
+.world-copy p,
+.section-intro,
+section[aria-labelledby="latest-guides-title"] p,
+.site-footer p {
+  text-wrap: pretty;
+}
+
+/* Keep tool actions on a shared baseline on desktop/tablet. */
+@media (min-width: 761px) {
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tool-card-action {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: auto;
+    padding: 8px 4px;
+    line-height: 1.35;
+  }
+}
+
+/* The existing 760px breakpoint is deliberate: desktop nav remains at 768px;
+   the mobile menu takes over at 760px and below. */
+@media (max-width: 760px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-menu {
+    display: block !important;
+  }
+}
+
+@media (min-width: 761px) {
+  .desktop-nav {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+/* Footer links become a predictable grid on tablet and phone. */
+@media (max-width: 900px) {
+  .site-footer .footer-links,
+  .site-footer nav.footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-footer .footer-links,
+  .site-footer nav.footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+  }
+}
+
+/* Stable menu overlay, safe-area-aware panel and accessible CTA treatment. */
+@media (max-width: 760px) {
+  .mobile-menu {
+    position: relative;
+    z-index: 60;
+  }
+
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: rgba(26, 37, 31, .46);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    cursor: default;
+  }
+
+  .mobile-menu-dialog {
+    position: fixed;
+    z-index: 51;
+    top: calc(env(safe-area-inset-top, 0px) + 76px);
+    right: max(var(--site-gutter), env(safe-area-inset-right, 0px));
+    width: min(360px, calc(100vw - var(--site-gutter) - var(--site-gutter)));
+    max-height: calc(100vh - 96px - env(safe-area-inset-bottom, 0px));
+    max-height: calc(100dvh - 96px - env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 12px;
+    border: 1px solid rgba(38, 52, 45, .14);
+    border-radius: 20px;
+    background: #faf8f3;
+    box-shadow: 0 20px 52px rgba(24, 35, 29, .22);
+  }
+
+  .mobile-menu .menu-toggle {
+    position: relative;
+    z-index: 52;
+  }
+
+  .mobile-menu-dialog .mobile-nav,
+  .mobile-menu-dialog .mobile-nav.is-open {
+    position: static;
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    max-height: none;
+    gap: 4px;
+    overflow: visible;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .mobile-menu-dialog .mobile-nav a {
+    display: flex;
+    min-height: 46px;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 11px;
+    line-height: 1.35;
+  }
+
+  .mobile-menu-dialog .mobile-nav a:active {
+    background: rgba(54, 91, 73, .08);
+  }
+
+  .mobile-menu-dialog .mobile-nav .mobile-nav-cta,
+  .mobile-menu-dialog .mobile-nav a:last-child {
+    display: inline-flex;
+    justify-content: center;
+    min-height: 46px;
+    margin-top: 8px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    background: var(--green, #365b49);
+    color: #fff;
+    font-weight: 750;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu-backdrop {
+    animation: buddydays-menu-fade-in .16s ease-out both;
+  }
+
+  .mobile-menu-dialog {
+    animation: buddydays-menu-panel-in .18s ease-out both;
+  }
+
+  @keyframes buddydays-menu-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes buddydays-menu-panel-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

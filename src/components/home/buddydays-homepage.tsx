@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { BlogBrowser } from "@/features/blog/components/blog-browser";
+import { LatestGuides } from "./latest-guides";
+import styles from "./homepage.module.css";
 
 // This markup is a direct port of the user-supplied BuddyDays visual reference.
 // Keep the HTML/SVG composition intact; behavior is attached in the effect below.
@@ -9,44 +10,59 @@ const HOMEPAGE_MARKUP = "<header class=\"site-header\">\n    <div class=\"header
 
 // Split the approved reference markup so the interactive React blog can sit
 // between Cat World and Tools without changing the original hero composition.
-const HEADER_MARKER = "<main id=\"top\">";
+const MAIN_MARKER = "<main id=\"top\">";
 const TOOLS_MARKER = "<section class=\"tools-section\"";
-const FOOTER_MARKER = "<footer class=\"site-footer\">";
 const MAIN_CLOSE_MARKER = "</main>";
 
-const mainStart = HOMEPAGE_MARKUP.indexOf(HEADER_MARKER);
+const mainStart = HOMEPAGE_MARKUP.indexOf(MAIN_MARKER);
 const toolsStart = HOMEPAGE_MARKUP.indexOf(TOOLS_MARKER);
 const mainClose = HOMEPAGE_MARKUP.lastIndexOf(MAIN_CLOSE_MARKER);
-const footerStart = HOMEPAGE_MARKUP.indexOf(FOOTER_MARKER);
 
-if (mainStart < 0 || toolsStart < 0 || mainClose < 0 || footerStart < 0) {
+if (mainStart < 0 || toolsStart < 0 || mainClose < 0) {
   throw new Error("BuddyDays homepage markup could not be split safely.");
 }
 
-const HEADER_HTML = HOMEPAGE_MARKUP.slice(0, mainStart);
-const WORLDS_HTML = HOMEPAGE_MARKUP.slice(mainStart + HEADER_MARKER.length, toolsStart);
-const TOOLS_HTML = HOMEPAGE_MARKUP.slice(toolsStart, mainClose);
-const FOOTER_HTML = HOMEPAGE_MARKUP.slice(footerStart);
+const WORLDS_HTML = HOMEPAGE_MARKUP
+  .slice(mainStart + MAIN_MARKER.length, toolsStart)
+  .replace('<h1 id="dogs-title">', '<h2 id="dogs-title">')
+  .replace("</h1>", "</h2>");
+
+const rawToolsHtml = HOMEPAGE_MARKUP.slice(toolsStart, mainClose);
+const baseToolsHtml = rawToolsHtml.replace("We're building practical tools that help you compare options, plan ahead and choose what actually fits your pet and your home.", "Simple, practical tools to help you plan, measure and make informed everyday decisions for your pet.");
+const gridStart = baseToolsHtml.indexOf('<div class="tool-grid" id="tool-grid" aria-live="polite">');
+const gridEndMarker = "\n        </div>\n      </div>\n    </section>";
+const gridEnd = baseToolsHtml.indexOf(gridEndMarker, gridStart);
+if (gridStart < 0 || gridEnd < 0) {
+  throw new Error("BuddyDays tools grid could not be located safely.");
+}
+
+const defaultToolGrid = `<div class="tool-grid" id="tool-grid" aria-live="polite">
+          <article class="tool-card"><div class="tool-icon" aria-hidden="true">📏</div><h3>Pet Size Calculator</h3><p>Record your pet's measurements before choosing equipment.</p><a class="tool-card-action" href="/tools/pet-size-calculator">Open tool →</a></article>
+          <article class="tool-card"><div class="tool-icon" aria-hidden="true">🎒</div><h3>Travel Checklist</h3><p>Build a practical packing list for a trip with your pet.</p><a class="tool-card-action" href="/tools/travel-checklist">Open tool →</a></article>
+          <article class="tool-card"><div class="tool-icon" aria-hidden="true">🧮</div><h3>Pet Cost Calculator</h3><p>Estimate one-time and recurring pet ownership costs.</p><a class="tool-card-action" href="/tools/pet-cost-calculator">Open tool →</a></article>
+`;
+
+const TOOLS_HTML = baseToolsHtml.slice(0, gridStart) + defaultToolGrid + baseToolsHtml.slice(gridEnd);
 
 type PetKind = "dogs" | "cats" | "both";
 
-type ToolItem = readonly [icon: string, title: string, description: string];
+type ToolItem = readonly [icon: string, title: string, description: string, href: string];
 
 const TOOL_CONTENT: Record<PetKind, readonly ToolItem[]> = {
   dogs: [
-    ["📏", "Size & fit guide", "Check measurements for harnesses, carriers, crates and everyday gear."],
-    ["🎒", "Travel checklist", "Build a practical packing list for road trips, walks and days out."],
-    ["⚖️", "Gear comparison", "Compare features, care requirements and estimated ownership costs."],
+    ["📏", "Pet Size Calculator", "Record measurements before choosing harnesses, carriers and other equipment.", "/tools/pet-size-calculator"],
+    ["🎒", "Travel Checklist", "Build a practical packing list for a trip with your dog.", "/tools/travel-checklist"],
+    ["🧮", "Pet Cost Calculator", "Estimate one-time and recurring costs for your pet.", "/tools/pet-cost-calculator"],
   ],
   cats: [
-    ["🍽️", "Feeder finder", "Narrow down feeders by number of cats, capacity, schedule and cleaning needs."],
-    ["🏡", "Cat home planner", "Plan comfortable areas for feeding, litter, scratching, play and rest."],
-    ["🔎", "Product comparison", "Compare fountains, litter boxes, trees and enrichment products."],
+    ["📏", "Pet Size Calculator", "Record measurements before choosing carriers and other equipment.", "/tools/pet-size-calculator"],
+    ["🎒", "Travel Checklist", "Prepare a practical packing list for a trip with your cat.", "/tools/travel-checklist"],
+    ["🧮", "Pet Cost Calculator", "Estimate one-time and recurring costs for your pet.", "/tools/pet-cost-calculator"],
   ],
   both: [
-    ["🧮", "Pet cost calculator", "Estimate recurring costs for supplies, filters, cleaning and everyday care."],
-    ["🛍️", "Product finder", "Shortlist useful products by budget, space and your pet’s needs."],
-    ["📊", "Side-by-side comparison", "Understand key differences, trade-offs and long-term ownership costs."],
+    ["📏", "Pet Size Calculator", "Record measurements before choosing pet equipment.", "/tools/pet-size-calculator"],
+    ["🎒", "Travel Checklist", "Build a practical packing list for a trip with your pet.", "/tools/travel-checklist"],
+    ["🧮", "Pet Cost Calculator", "Estimate one-time and recurring pet ownership costs.", "/tools/pet-cost-calculator"],
   ],
 };
 
@@ -155,44 +171,18 @@ export function BuddyDaysHomepage() {
       });
     }
 
-    const mobileButton = root.querySelector<HTMLButtonElement>(".mobile-menu-button");
-    const mobileNav = root.querySelector<HTMLElement>("#mobile-nav");
-    if (mobileButton && mobileNav) {
-      mobileButton.addEventListener(
-        "click",
-        () => {
-          const open = mobileButton.getAttribute("aria-expanded") !== "true";
-          mobileButton.setAttribute("aria-expanded", String(open));
-          mobileNav.classList.toggle("is-open", open);
-          mobileButton.textContent = open ? "Close" : "Menu";
-        },
-        { signal },
-      );
-      mobileNav.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
-        link.addEventListener(
-          "click",
-          () => {
-            mobileButton.setAttribute("aria-expanded", "false");
-            mobileNav.classList.remove("is-open");
-            mobileButton.textContent = "Menu";
-          },
-          { signal },
-        );
-      });
-    }
-
     const grid = root.querySelector<HTMLElement>("#tool-grid");
     const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>(".pet-tab"));
     function renderTools(pet: PetKind) {
       if (!grid) return;
       grid.innerHTML = TOOL_CONTENT[pet]
         .map(
-          ([icon, title, description]) => `
+          ([icon, title, description, href]) => `
             <article class="tool-card">
               <div class="tool-icon" aria-hidden="true">${icon}</div>
               <h3>${title}</h3>
               <p>${description}</p>
-              <span class="status-pill">In development</span>
+              <a class="tool-card-action" href="${href}">Open tool →</a>
             </article>`,
         )
         .join("");
@@ -221,8 +211,6 @@ export function BuddyDaysHomepage() {
       );
     });
 
-    const year = root.querySelector<HTMLElement>("#year");
-    if (year) year.textContent = String(new Date().getFullYear());
 
     return () => {
       controller.abort();
@@ -233,13 +221,18 @@ export function BuddyDaysHomepage() {
 
   return (
     <div ref={rootRef} className="buddydays-reference-homepage">
-      <div dangerouslySetInnerHTML={{ __html: HEADER_HTML }} />
       <main id="top">
-        <div dangerouslySetInnerHTML={{ __html: WORLDS_HTML }} />
-        <BlogBrowser variant="home" />
+        <section className={styles.hero} aria-labelledby="pet-worlds-title">
+          <div className={styles.heroHeading}>
+            <span className={styles.kicker}>A HAPPIER EVERYDAY WITH PETS</span>
+            <h1 id="pet-worlds-title">Better days with dogs and cats.</h1>
+            <p>Thoughtful guides, practical ideas and useful tools for the animals who make a house a home.</p>
+          </div>
+          <div className={styles.worldGrid} dangerouslySetInnerHTML={{ __html: WORLDS_HTML }} />
+        </section>
+        <LatestGuides />
         <div dangerouslySetInnerHTML={{ __html: TOOLS_HTML }} />
       </main>
-      <div dangerouslySetInnerHTML={{ __html: FOOTER_HTML }} />
     </div>
   );
 }
