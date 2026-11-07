@@ -297,7 +297,7 @@
 
     .tools-section { padding: 76px 28px 84px; background: #faf8f3; }
     .tools-inner { width: min(100%, 1020px); margin: 0 auto; }
-    .section-kicker { color: #718076; font-size: 10px; letter-spacing: .17em; font-weight: 850; text-transform: uppercase; }
+    .section-kicker { color: #5f6c61; font-size: 10px; letter-spacing: .17em; font-weight: 850; text-transform: uppercase; }
     .tools-section h2 {
       margin: 12px 0 10px;
       font: 500 clamp(32px, 4vw, 47px)/1.07 Georgia, "Times New Roman", serif;
@@ -482,15 +482,6 @@
 
 .tools-inner {
   width: min(100%, var(--site-container));
-}
-
-section[aria-labelledby="latest-guides-title"] {
-  width: min(
-    calc(100% - var(--site-gutter) - var(--site-gutter)),
-    var(--site-container)
-  );
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Predictable typography without changing the established typefaces. */

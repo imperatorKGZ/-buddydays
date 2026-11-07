@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site";
 import { blogArticles } from "@/data/blog/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const publicRoutes = ["", "/dogs", "/cats", "/blog", "/about", "/methodology", "/contact", "/privacy", "/terms"];
+  const publicRoutes = ["", "/dogs", "/cats", "/blog", "/about", "/methodology", "/contact", "/privacy", "/terms", "/emergency-pet-help"];
   const publishedBlogArticles = blogArticles.filter(
     (article) => article.status === "published" && Boolean(article.sections?.length),
   );

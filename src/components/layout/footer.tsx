@@ -14,6 +14,7 @@ export function Footer() {
         <Link href="/cats">Cats</Link>
         <Link href="/blog">Journal</Link>
         <Link href="/tools">Tools</Link>
+        <Link href="/emergency-pet-help">Emergency Pet Help</Link>
         <Link href="/about">About</Link>
         <Link href="/methodology">Editorial standards</Link>
         <Link href="/contact">Contact</Link>

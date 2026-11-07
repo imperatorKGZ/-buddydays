@@ -22,7 +22,7 @@ export function MobileMenu() {
 
     root.style.overflow = "hidden";
     body.style.overflow = "hidden";
-    if (scrollbarWidth > 0) body.style.paddingRight = String(scrollbarWidth) + "px";
+    if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`;
 
     const focusFrame = window.requestAnimationFrame(() => {
       const firstFocusable = dialogRef.current?.querySelector<HTMLElement>(
@@ -39,6 +39,7 @@ export function MobileMenu() {
       }
 
       if (event.key !== "Tab") return;
+
       const focusable = Array.from(
         dialogRef.current?.querySelectorAll<HTMLElement>(
           'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
@@ -46,6 +47,7 @@ export function MobileMenu() {
       ).filter((element) => !element.hasAttribute("disabled"));
 
       if (focusable.length === 0) return;
+
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
 
@@ -59,6 +61,7 @@ export function MobileMenu() {
     }
 
     document.addEventListener("keydown", handleKeyDown);
+
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       window.cancelAnimationFrame(focusFrame);
@@ -80,7 +83,7 @@ export function MobileMenu() {
         className="menu-toggle"
         type="button"
         aria-expanded={open}
-        aria-controls="mobile-navigation"
+        aria-controls={open ? "mobile-navigation" : undefined}
         aria-haspopup="dialog"
         onClick={() => setOpen((value) => !value)}
       >
@@ -103,7 +106,11 @@ export function MobileMenu() {
             aria-modal="true"
             aria-label="Site navigation"
           >
-            <nav id="mobile-navigation" className="mobile-nav is-open" aria-label="Mobile navigation">
+            <nav
+              id="mobile-navigation"
+              className="mobile-nav is-open"
+              aria-label="Mobile navigation"
+            >
               {mainNavigation.map((item) => (
                 <Link key={item.href} href={item.href} onClick={closeMenu}>
                   {item.label}

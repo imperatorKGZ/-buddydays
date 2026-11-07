@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SiteChrome } from "@/components/layout/site-chrome";
+import { EmergencyPetHelp } from "@/components/emergency-help/emergency-pet-help";
 import { OrganizationJsonLd } from "@/lib/seo/json-ld";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <OrganizationJsonLd />
         <SiteChrome>{children}</SiteChrome>
+        <EmergencyPetHelp />
       </body>
     </html>
   );

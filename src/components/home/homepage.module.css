@@ -1,35 +1,189 @@
-.hero { padding: clamp(28px, 4vw, 48px) clamp(16px, 5vw, 72px) 50px; background: #f7f3ed; }
-.heroHeading { width: min(900px, 100%); margin: 0 auto 26px; text-align: center; }
-.kicker { color: #718076; font-size: 10px; font-weight: 850; letter-spacing: .17em; text-transform: uppercase; }
-.heroHeading h1 { margin: 10px 0 9px; color: #263c35; font: 500 clamp(34px, 4.4vw, 54px)/1.04 Georgia, "Times New Roman", serif; letter-spacing: -.045em; }
-.heroHeading p { max-width: 620px; margin: 0 auto; color: #68736b; font-size: 14px; line-height: 1.7; }
-.worldGrid { display: grid; width: min(1160px, 100%); grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 0 auto; }
-.worldGrid :global(.bridge) { display: none; }
-.worldGrid :global(.world) { min-width: 0; min-height: 300px; border-radius: 22px; }
-.worldGrid :global(.world-inner) { width: min(calc(100% - 34px), 560px); min-height: 300px; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: 8px; padding: 17px 0; }
-.worldGrid :global(.world h1), .worldGrid :global(.world h2) { max-width: 360px; font-size: clamp(27px, 2.8vw, 39px); line-height: 1.03; }
-.worldGrid :global(.world-copy p) { margin: 12px 0 16px; font-size: 12px; line-height: 1.6; }
-.worldGrid :global(.art-wrap) { max-width: 245px; }
-.worldGrid :global(.mascot) { width: min(100%, 250px); }
-.worldGrid :global(.cat-world .mascot) { width: min(100%, 240px); }
-.worldGrid :global(.world-note) { display: none; }
-.worldGrid :global(.world-link) { min-height: 42px; padding-inline: 15px; font-size: 11px; }
-:global(.tool-card-action) { display: inline-flex; align-items: center; justify-self: start; min-height: 34px; margin-top: 13px; color: #365b49; font-size: 11px; font-weight: 800; text-decoration: none; }
-:global(.tool-card-action:hover) { text-decoration: underline; text-underline-offset: 3px; }
-@media (max-width: 820px) { .worldGrid { grid-template-columns: minmax(0, 1fr); } .worldGrid :global(.world) { width: min(100%, 620px); min-height: 270px; margin: 0 auto; } .worldGrid :global(.world-inner) { min-height: 270px; } }
+.hero {
+  padding: clamp(28px, 4vw, 48px) var(--site-gutter, 24px) 50px;
+  background: #f7f3ed;
+}
+
+.heroHeading {
+  width: min(900px, 100%);
+  margin: 0 auto 26px;
+  text-align: center;
+}
+
+.kicker {
+  color: #5f6c61;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.heroHeading h1 {
+  margin: 10px 0 9px;
+  color: #263c35;
+  font: 500 clamp(34px, 4.4vw, 54px)/1.04 Georgia, "Times New Roman", serif;
+  letter-spacing: -.045em;
+}
+
+.heroHeading p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #68736b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.worldGrid {
+  display: grid;
+  width: min(1160px, 100%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0 auto;
+}
+
+.worldGrid :global(.bridge) {
+  display: none;
+}
+
+.worldGrid :global(.world) {
+  min-width: 0;
+  min-height: 300px;
+  border-radius: 22px;
+}
+
+.worldGrid :global(.world-inner) {
+  width: min(calc(100% - 34px), 560px);
+  min-height: 300px;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  gap: 8px;
+  padding: 17px 0;
+}
+
+.worldGrid :global(.world h1),
+.worldGrid :global(.world h2) {
+  max-width: 360px;
+  font-size: clamp(27px, 2.8vw, 39px);
+  line-height: 1.03;
+}
+
+.worldGrid :global(.world-copy p) {
+  margin: 12px 0 16px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.worldGrid :global(.art-wrap) {
+  max-width: 245px;
+}
+
+.worldGrid :global(.mascot) {
+  width: min(100%, 250px);
+}
+
+.worldGrid :global(.cat-world .mascot) {
+  width: min(100%, 240px);
+}
+
+.worldGrid :global(.world-note) {
+  display: none;
+}
+
+.worldGrid :global(.world-link) {
+  min-height: 42px;
+  padding-inline: 15px;
+  font-size: 11px;
+}
+
+:global(.tool-card-action) {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  min-height: 34px;
+  margin-top: 13px;
+  color: #365b49;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+:global(.tool-card-action:hover) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 820px) {
+  .worldGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .worldGrid :global(.world) {
+    width: min(100%, 620px);
+    min-height: 270px;
+    margin: 0 auto;
+  }
+
+  .worldGrid :global(.world-inner) {
+    min-height: 270px;
+  }
+}
+
 @media (max-width: 560px) {
-  .hero { padding: 30px 16px 38px; }
-  .heroHeading { margin-bottom: 20px; text-align: left; }
-  .heroHeading h1 { font-size: clamp(32px, 8vw, 42px); }
-  .heroHeading p { font-size: 13px; }
-  .worldGrid { gap: 12px; }
-  .worldGrid :global(.world) { min-height: 238px; border-radius: 18px; }
-  .worldGrid :global(.world-inner) { width: calc(100% - 24px); min-height: 238px; grid-template-columns: minmax(0, 1fr) minmax(96px, .78fr); gap: 5px; padding: 15px 0; }
-  .worldGrid :global(.world h1), .worldGrid :global(.world h2) { font-size: clamp(25px, 7vw, 33px); }
-  .worldGrid :global(.world-copy p) { font-size: 11px; margin: 10px 0 13px; }
-  .worldGrid :global(.art-wrap) { max-width: 155px; }
-  .worldGrid :global(.mascot) { width: 100%; }
-  .worldGrid :global(.world-link) { min-height: 39px; padding-inline: 11px; font-size: 10px; }
+  .hero {
+    padding: 30px var(--site-gutter, 16px) 38px;
+  }
+
+  .heroHeading {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .heroHeading h1 {
+    font-size: clamp(32px, 8vw, 42px);
+  }
+
+  .heroHeading p {
+    font-size: 13px;
+  }
+
+  .worldGrid {
+    gap: 12px;
+  }
+
+  .worldGrid :global(.world) {
+    min-height: 238px;
+    border-radius: 18px;
+  }
+
+  .worldGrid :global(.world-inner) {
+    width: calc(100% - 24px);
+    min-height: 238px;
+    grid-template-columns: minmax(0, 1fr) minmax(96px, .78fr);
+    gap: 5px;
+    padding: 15px 0;
+  }
+
+  .worldGrid :global(.world h1),
+  .worldGrid :global(.world h2) {
+    font-size: clamp(25px, 7vw, 33px);
+  }
+
+  .worldGrid :global(.world-copy p) {
+    font-size: 11px;
+    margin: 10px 0 13px;
+  }
+
+  .worldGrid :global(.art-wrap) {
+    max-width: 155px;
+  }
+
+  .worldGrid :global(.mascot) {
+    width: 100%;
+  }
+
+  .worldGrid :global(.world-link) {
+    min-height: 39px;
+    padding-inline: 11px;
+    font-size: 10px;
+  }
 }
 
 /* BUDDYDAYS_STAGE_1_1_MOBILE_REFINEMENT */
@@ -158,22 +312,7 @@
   }
 }
 
-/* BUDDYDAYS_STAGE_1_2_LAYOUT_ACCESSIBILITY_POLISH */
-/* Stage 1.2 — the Hero uses the same content rail as Journal, Tools and Footer. */
-.worldGrid {
-  width: min(
-    calc(100% - var(--site-gutter, 24px) - var(--site-gutter, 24px)),
-    var(--site-container, 1160px)
-  );
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.worldGrid :global(.world-inner) {
-  width: 100%;
-}
-
-/* Align Dog/Cat actions to the same baseline on wider screens. */
+/* Dog and Cat cards share a copy/action baseline on wide layouts. */
 @media (min-width: 1100px) {
   .worldGrid :global(.world-inner) {
     align-items: stretch;
@@ -192,7 +331,7 @@
   }
 }
 
-/* Text color values are selected for >= 4.5:1 contrast on the existing card fills. */
+/* Text colors keep small copy above WCAG AA on the existing card fills. */
 .worldGrid :global(.dog-world .world-copy p) {
   color: #65564a;
   opacity: 1;
