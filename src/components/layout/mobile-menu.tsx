@@ -18,6 +18,7 @@ export function MobileMenu() {
     const previousRootOverflow = root.style.overflow;
     const previousBodyOverflow = body.style.overflow;
     const previousBodyPaddingRight = body.style.paddingRight;
+    const trigger = triggerRef.current;
     const scrollbarWidth = Math.max(0, window.innerWidth - root.clientWidth);
 
     root.style.overflow = "hidden";
@@ -68,7 +69,7 @@ export function MobileMenu() {
       root.style.overflow = previousRootOverflow;
       body.style.overflow = previousBodyOverflow;
       body.style.paddingRight = previousBodyPaddingRight;
-      triggerRef.current?.focus({ preventScroll: true });
+      trigger?.focus({ preventScroll: true });
     };
   }, [open]);
 
@@ -106,11 +107,7 @@ export function MobileMenu() {
             aria-modal="true"
             aria-label="Site navigation"
           >
-            <nav
-              id="mobile-navigation"
-              className="mobile-nav is-open"
-              aria-label="Mobile navigation"
-            >
+            <nav id="mobile-navigation" className="mobile-nav is-open" aria-label="Mobile navigation">
               {mainNavigation.map((item) => (
                 <Link key={item.href} href={item.href} onClick={closeMenu}>
                   {item.label}

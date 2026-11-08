@@ -1,0 +1,25 @@
+diff --git a/src/app/globals.css b/src/app/globals.css
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -298,4 +298,4 @@
+     .tools-section { padding: 76px 28px 84px; background: #faf8f3; }
+     .tools-inner { width: min(100%, 1020px); margin: 0 auto; }
+-    .section-kicker { color: #718076; font-size: 10px; letter-spacing: .17em; font-weight: 850; text-transform: uppercase; }
++    .section-kicker { color: #5f6c61; font-size: 10px; letter-spacing: .17em; font-weight: 850; text-transform: uppercase; }
+     .tools-section h2 {
+@@ -483,15 +483,6 @@
+ .tools-inner {
+   width: min(100%, var(--site-container));
+ }
+ 
+-section[aria-labelledby="latest-guides-title"] {
+-  width: min(
+-    calc(100% - var(--site-gutter) - var(--site-gutter)),
+-    var(--site-container)
+-  );
+-  margin-left: auto;
+-  margin-right: auto;
+-}
+-
+ /* Predictable typography without changing the established typefaces. */
+ .world h1,

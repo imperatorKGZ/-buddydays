@@ -6,9 +6,7 @@ import styles from "./latest-guides.module.css";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 const latestArticles = blogArticles
-  .filter((article) => (
-    article.status === "published" && Boolean(article.sections?.length)
-  ) || isDevelopment)
+  .filter((article) => (article.status === "published" && Boolean(article.sections?.length)) || isDevelopment)
   .sort((a, b) => {
     const aDate = a.publishedAt ? Date.parse(a.publishedAt) : 0;
     const bDate = b.publishedAt ? Date.parse(b.publishedAt) : 0;
@@ -50,14 +48,18 @@ export function LatestGuides() {
                   >
                     <span className={styles.species}>{article.species === "dogs" ? "DOGS" : "CATS"}</span>
                     <span className={styles.coverTitle}>{category?.label ?? article.category}</span>
-                    <span className={styles.coverMark} aria-hidden="true">{article.species === "dogs" ? "◒" : "◓"}</span>
+                    <span className={styles.coverMark} aria-hidden="true">
+                      {article.species === "dogs" ? "◒" : "◓"}
+                    </span>
                   </Link>
                   <div className={styles.cardBody}>
                     <div className={styles.meta}>
                       <span>{category?.label ?? article.category}</span>
                       <span>{article.readingMinutes} MIN READ</span>
                     </div>
-                    <h3><Link href={articleHref(article)}>{article.title}</Link></h3>
+                    <h3>
+                      <Link href={articleHref(article)}>{article.title}</Link>
+                    </h3>
                     <p>{article.excerpt}</p>
                     <Link className={styles.readLink} href={articleHref(article)}>
                       {isPublished ? "Read guide" : "Preview topic"} <span aria-hidden="true">→</span>
@@ -76,7 +78,9 @@ export function LatestGuides() {
         )}
 
         {isDevelopment && latestArticles.some((article) => article.status === "draft") ? (
-          <p className={styles.previewNote}>Development preview: draft topics are shown locally and are not published.</p>
+          <p className={styles.previewNote}>
+            Development preview: draft topics are shown locally and are not published.
+          </p>
         ) : null}
       </div>
     </section>

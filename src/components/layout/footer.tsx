@@ -4,7 +4,9 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div>
-        <Link className="footer-brand" href="/">BuddyDays</Link>
+        <Link className="footer-brand" href="/">
+          BuddyDays
+        </Link>
         <p className="footer-copy">
           Thoughtful guides and practical ideas for people who share their homes with dogs and cats.
         </p>

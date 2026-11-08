@@ -10,12 +10,7 @@ export function CatMascot({ className = "", gaze }: CatMascotProps) {
   const head = `rotate(${gaze.x * 1.1} 120 115)`;
 
   return (
-    <svg
-      className={className}
-      viewBox="0 0 240 220"
-      role="img"
-      aria-label="Calm illustrated cat mascot"
-    >
+    <svg className={className} viewBox="0 0 240 220" role="img" aria-label="Calm illustrated cat mascot">
       <ellipse cx="120" cy="204" rx="67" ry="8" fill="#647d8b" opacity=".10" />
 
       <path
@@ -41,8 +36,18 @@ export function CatMascot({ className = "", gaze }: CatMascotProps) {
           d="M120 39 C65 37 36 71 39 126 C42 177 76 195 120 195 C164 195 198 177 201 126 C204 71 175 37 120 39Z"
           fill="#adbdc9"
         />
-        <path d="M53 139 Q67 171 94 168 Q120 178 146 168 Q174 171 187 139 Q180 184 120 189 Q60 184 53 139Z" fill="#dbe1e7" />
-        <path d="M66 84 Q84 73 101 84 M139 84 Q156 73 174 84" fill="none" stroke="#91a6b4" strokeWidth="4" strokeLinecap="round" opacity=".7" />
+        <path
+          d="M53 139 Q67 171 94 168 Q120 178 146 168 Q174 171 187 139 Q180 184 120 189 Q60 184 53 139Z"
+          fill="#dbe1e7"
+        />
+        <path
+          d="M66 84 Q84 73 101 84 M139 84 Q156 73 174 84"
+          fill="none"
+          stroke="#91a6b4"
+          strokeWidth="4"
+          strokeLinecap="round"
+          opacity=".7"
+        />
 
         <g className="mascot-eye mascot-eye-left cat-eye">
           <ellipse cx="85" cy="108" rx="14" ry="18" fill="#f5f1db" />

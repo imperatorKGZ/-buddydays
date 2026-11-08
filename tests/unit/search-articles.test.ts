@@ -4,12 +4,32 @@ import type { BlogArticle } from "@/data/blog/articles";
 
 const articles: BlogArticle[] = [
   {
-    id: "one", slug: "rainy-dog-days", title: "Keeping a Dog Busy on Rainy Days", excerpt: "Indoor games for a wet afternoon.",
-    species: "dogs", category: "lifestyle", tags: ["indoor activities", "play"], readingMinutes: 5, rank: 2, editorPick: false, status: "draft", outline: [],
+    id: "one",
+    slug: "rainy-dog-days",
+    title: "Keeping a Dog Busy on Rainy Days",
+    excerpt: "Indoor games for a wet afternoon.",
+    species: "dogs",
+    category: "lifestyle",
+    tags: ["indoor activities", "play"],
+    readingMinutes: 5,
+    rank: 2,
+    editorPick: false,
+    status: "draft",
+    outline: [],
   },
   {
-    id: "two", slug: "cat-carrier", title: "Making a Cat Carrier Familiar", excerpt: "Gentle preparation for travel.",
-    species: "cats", category: "behavior", tags: ["carrier", "travel"], readingMinutes: 4, rank: 1, editorPick: false, status: "draft", outline: [],
+    id: "two",
+    slug: "cat-carrier",
+    title: "Making a Cat Carrier Familiar",
+    excerpt: "Gentle preparation for travel.",
+    species: "cats",
+    category: "behavior",
+    tags: ["carrier", "travel"],
+    readingMinutes: 4,
+    rank: 1,
+    editorPick: false,
+    status: "draft",
+    outline: [],
   },
 ];
 
@@ -25,5 +45,10 @@ describe("searchBlogArticles", () => {
 
   it("returns all articles for an empty query", () => {
     expect(searchBlogArticles(articles, "  ")).toHaveLength(2);
+  });
+
+  it("normalizes spacing, diacritics, and case", () => {
+    const accented = [{ ...articles[0], title: "Café dog" }];
+    expect(searchBlogArticles(accented, "  CAFE   DOG ")).toHaveLength(1);
   });
 });

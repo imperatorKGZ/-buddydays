@@ -11,13 +11,12 @@ export default function AffiliateDisclosurePage() {
       <p className="eyebrow">BuddyDays</p>
       <h1>Affiliate Disclosure</h1>
       <p>
-        BuddyDays does not currently use affiliate links or participate in
-        affiliate programs. The initial launch is focused on editorial
-        content, not product sales or commissions.
+        BuddyDays does not currently use affiliate links or participate in affiliate programs. The initial launch is
+        focused on editorial content, not product sales or commissions.
       </p>
       <p>
-        If this changes, we will update this page and clearly disclose any
-        material relationship near the relevant link or recommendation.
+        If this changes, we will update this page and clearly disclose any material relationship near the relevant link
+        or recommendation.
       </p>
     </main>
   );

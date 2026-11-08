@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
 
-const viewports = [320, 390, 480, 600, 768, 900, 1024, 1280, 1440, 1920] as const;
+const viewports = [320, 375, 390, 480, 600, 768, 900, 1024, 1280, 1440, 1920] as const;
 const screenshotDirectory = path.resolve(process.cwd(), "test-results", "visual-audit");
 const homepageHeading = "Better days with dogs and cats.";
 
@@ -70,9 +70,7 @@ for (const width of viewports) {
       expect(rails[name], `${name} content rail should be measurable`).not.toBeNull();
     }
 
-    const railValues = Object.values(rails).filter(
-      (value): value is { x: number; width: number } => value !== null,
-    );
+    const railValues = Object.values(rails).filter((value): value is { x: number; width: number } => value !== null);
     const leftEdges = railValues.map((value) => value.x);
     expect(
       Math.max(...leftEdges) - Math.min(...leftEdges),
@@ -106,10 +104,7 @@ for (const width of viewports) {
       const copy = await world.locator(".world-copy").boundingBox();
       expect(card, `${worldId} card should have a measurable box`).not.toBeNull();
       expect(copy, `${worldId} copy should have a measurable box`).not.toBeNull();
-      expect(
-        copy!.x - card!.x,
-        `${worldId} text should not be flush against the card edge`,
-      ).toBeGreaterThanOrEqual(8);
+      expect(copy!.x - card!.x, `${worldId} text should not be flush against the card edge`).toBeGreaterThanOrEqual(8);
       expect(
         card!.x + card!.width - (copy!.x + copy!.width),
         `${worldId} copy should preserve a right-side inset`,

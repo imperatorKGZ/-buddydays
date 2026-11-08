@@ -4,14 +4,18 @@ import { BlogBrowser } from "@/features/blog/components/blog-browser";
 export const metadata: Metadata = {
   title: "The BuddyDays Journal",
   description: "Helpful ideas and thoughtful guides for life with dogs and cats.",
-  alternates: { canonical: "/blog" },
   openGraph: {
     title: "The BuddyDays Journal",
     description: "Helpful ideas and thoughtful guides for life with dogs and cats.",
     type: "website",
   },
+  alternates: { canonical: "/blog", types: { "application/rss+xml": "/feed.xml" } },
 };
 
 export default function BlogPage() {
-  return <BlogBrowser variant="page" />;
+  return (
+    <main>
+      <BlogBrowser variant="page" />
+    </main>
+  );
 }

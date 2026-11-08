@@ -15,8 +15,6 @@ export function EmergencyPetHelp() {
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    setIsFooterNear(false);
-
     const footer = document.querySelector<HTMLElement>("footer.site-footer");
     if (!footer) return;
 
@@ -137,7 +135,9 @@ export function EmergencyPetHelp() {
               >
                 Open AAHA hospital locator <span aria-hidden="true">↗</span>
               </a>
-              <p className={styles.smallNote}>This directory includes AAHA-accredited practices, not every emergency hospital.</p>
+              <p className={styles.smallNote}>
+                This directory includes AAHA-accredited practices, not every emergency hospital.
+              </p>
             </section>
 
             <section className={styles.resource} aria-labelledby="poison-control-heading">
@@ -154,22 +154,28 @@ export function EmergencyPetHelp() {
                 </a>
               </div>
               <p className={styles.smallNote}>
-                <a href={emergencyHelpResources.aspcaPoisonControl.websiteUrl} target="_blank" rel="noopener noreferrer">ASPCA details</a>
+                <a
+                  href={emergencyHelpResources.aspcaPoisonControl.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ASPCA details
+                </a>
                 {" · "}
-                <a href={emergencyHelpResources.petPoisonHelpline.websiteUrl} target="_blank" rel="noopener noreferrer">Pet Poison Helpline details</a>
+                <a href={emergencyHelpResources.petPoisonHelpline.websiteUrl} target="_blank" rel="noopener noreferrer">
+                  Pet Poison Helpline details
+                </a>
               </p>
             </section>
           </div>
 
           <p className={styles.disclaimer}>
-            BuddyDays is not a veterinary provider and does not offer diagnosis or medical advice. For an urgent situation, call your veterinarian or a local emergency animal hospital now. Call ahead to confirm availability.
+            BuddyDays is not a veterinary provider and does not offer diagnosis or medical advice. For an urgent
+            situation, call your veterinarian or a local emergency animal hospital now. Call ahead to confirm
+            availability.
           </p>
           <div className={styles.panelFooter}>
-            <a
-              href={emergencyHelpResources.fdaEmergencyGuidanceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={emergencyHelpResources.fdaEmergencyGuidanceUrl} target="_blank" rel="noopener noreferrer">
               FDA emergency guidance <span aria-hidden="true">↗</span>
             </a>
             <Link href="/emergency-pet-help" prefetch={false} onClick={() => setIsOpen(false)}>

@@ -3,9 +3,13 @@ import { calculateOwnershipCost } from "@/features/cost-calculator/logic/calcula
 
 describe("calculateOwnershipCost", () => {
   it("adds initial cost and recurring costs in the selected period", () => {
-    expect(calculateOwnershipCost({ initialCost: 40, recurringCost: 8, recurringIntervalDays: 30, periodDays: 90 })).toBe(64);
+    expect(
+      calculateOwnershipCost({ initialCost: 40, recurringCost: 8, recurringIntervalDays: 30, periodDays: 90 }),
+    ).toBe(64);
   });
   it("rejects invalid recurrence intervals", () => {
-    expect(() => calculateOwnershipCost({ initialCost: 10, recurringCost: 3, recurringIntervalDays: 0, periodDays: 90 })).toThrow();
+    expect(() =>
+      calculateOwnershipCost({ initialCost: 10, recurringCost: 3, recurringIntervalDays: 0, periodDays: 90 }),
+    ).toThrow();
   });
 });

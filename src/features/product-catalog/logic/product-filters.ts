@@ -1,6 +1,10 @@
 import type { Product } from "@/types/product";
 
-export interface ProductFilters { species?: "dog" | "cat"; category?: string; brand?: string; }
+export interface ProductFilters {
+  species?: "dog" | "cat";
+  category?: string;
+  brand?: string;
+}
 export function filterProducts(products: Product[], filters: ProductFilters): Product[] {
   return products.filter((product) => {
     if (filters.species && product.species !== filters.species && product.species !== "both") return false;

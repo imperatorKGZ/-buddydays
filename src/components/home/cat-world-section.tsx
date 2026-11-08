@@ -21,8 +21,7 @@ export function CatWorldSection() {
           <span>in every day.</span>
         </h2>
         <p>
-          Discover smart home setups, honest product comparisons and ideas that
-          make life better for you and your cat.
+          Discover smart home setups, honest product comparisons and ideas that make life better for you and your cat.
         </p>
         <div className="world-actions">
           <Link className="button button-dark" href="/cats">

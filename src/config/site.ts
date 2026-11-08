@@ -1,3 +1,8 @@
+import "server-only";
+import { getServerEnv } from "@/config/env";
+
+const environment = getServerEnv();
+
 export const siteConfig = {
   name: "BuddyDays",
   tagline: "Better days, together.",
@@ -5,5 +10,6 @@ export const siteConfig = {
   locale: "en_US",
   language: "en",
   market: "US",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: environment.SITE_URL,
+  deploymentEnv: environment.DEPLOYMENT_ENV,
 } as const;

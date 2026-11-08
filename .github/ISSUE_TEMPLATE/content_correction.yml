@@ -1,0 +1,16 @@
+name: Content correction
+description: Report a factual or editorial correction.
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Article URL
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Correction
+      description: Explain the specific claim and provide a permitted source where possible.
+    validations:
+      required: true

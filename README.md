@@ -3,34 +3,41 @@
 BuddyDays is an editorial platform for dog and cat owners in the US. The first release focuses on useful articles, clear topic navigation, and validating organic traffic before product and affiliate features are built.
 
 ## Stack
+
 - Next.js App Router, React, TypeScript (strict)
 - Tailwind CSS v4, Zod, MDX
 - Vitest and Playwright
 
 ## Requirements
+
 - Node.js 20.19+ (Node 22 LTS recommended)
-- npm
+- npm 10.9.3+ (the version bundled with Node 22.19.0 is supported)
 
 ## Start locally
-No `.env.local` file or external service credentials are required for the initial local development setup. The project pins Vitest to `4.1.11` and overrides that version to avoid a known npm 10.9.3 peer-resolution crash.
+
+No `.env.local` file or external service credentials are required for the initial local development setup. The project pins Vitest to `4.1.12`; no npm peer-resolution workaround is required.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
 Open http://localhost:3000.
 
 ## Commands
+
 ```bash
 npm run lint
 npm run typecheck
 npm test
 npm run build
 npm run test:e2e
+npm run content:validate
+npm run format:check
 ```
 
 ## Core rules
+
 1. Product is BuddyDays-owned researched data; it has no merchant-specific offer, live inventory, or Amazon price.
 2. Offer is a merchant-specific purchase destination and is separate from Product.
 3. Matching, scoring, filtering, and comparison use Product only. Attach Offers after matching.
@@ -44,11 +51,9 @@ npm run test:e2e
 
 Read `AGENTS.md` and `docs/` before implementing features. See `docs/blog-workflow.md` for adding and publishing articles.
 
-
 ## Homepage design reference
 
 The homepage is a direct port of the supplied full HTML reference. Its CSS, copy, SVG mascots, header, responsive layout, tool tabs, footer, and pointer interactions are preserved. The brand name is adapted to BuddyDays. Avoid replacing it with a new interpretation of the design.
-
 
 ## Blog preview
 

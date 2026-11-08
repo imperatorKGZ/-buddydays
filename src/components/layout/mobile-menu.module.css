@@ -1,4 +1,6 @@
-.container { position: relative; }
+.container {
+  position: relative;
+}
 @media (max-width: 760px) {
   .container :global(.mobile-nav.is-open) {
     display: grid;
@@ -18,10 +20,10 @@
     max-width: calc(100vw - 32px);
     padding: 10px;
     gap: 4px;
-    border: 1px solid rgba(38, 52, 45, .12);
+    border: 1px solid rgba(38, 52, 45, 0.12);
     border-radius: 18px;
     background: #faf8f3;
-    box-shadow: 0 16px 34px rgba(35, 45, 40, .14);
+    box-shadow: 0 16px 34px rgba(35, 45, 40, 0.14);
     z-index: 30;
   }
 
@@ -35,7 +37,7 @@
   }
 
   .container :global(.mobile-nav.is-open a:active) {
-    background: rgba(54, 91, 73, .08);
+    background: rgba(54, 91, 73, 0.08);
   }
 }
 

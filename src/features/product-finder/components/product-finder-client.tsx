@@ -17,8 +17,15 @@ export function ProductFinderClient() {
     const eligible = matchProducts(products, criteria);
     setResults(scoreProducts(eligible, criteria));
   }
-  return <>
-    <FinderForm onSubmit={handleSubmit}/>
-    {results ? <section className="stack" aria-live="polite"><h2>Matching products</h2><FinderResults results={results}/></section> : null}
-  </>;
+  return (
+    <>
+      <FinderForm onSubmit={handleSubmit} />
+      {results ? (
+        <section className="stack" aria-live="polite">
+          <h2>Matching products</h2>
+          <FinderResults results={results} />
+        </section>
+      ) : null}
+    </>
+  );
 }

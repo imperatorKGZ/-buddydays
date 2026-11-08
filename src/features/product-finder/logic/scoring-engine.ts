@@ -8,15 +8,21 @@ export function scoreProduct(product: Product, criteria: ProductFinderCriteria):
   const limitations: string[] = [];
   let matched = 0;
 
-  if (criteria.petSize && product.suitability.petSizes?.includes(criteria.petSize)) reasons.push(`Suitable for selected size: ${criteria.petSize}.`);
-  else if (criteria.petSize && !product.suitability.petSizes?.length) limitations.push("Pet-size compatibility has not been verified.");
+  if (criteria.petSize && product.suitability.petSizes?.includes(criteria.petSize))
+    reasons.push(`Suitable for selected size: ${criteria.petSize}.`);
+  else if (criteria.petSize && !product.suitability.petSizes?.length)
+    limitations.push("Pet-size compatibility has not been verified.");
 
-  if (criteria.petAge && product.suitability.petAges?.includes(criteria.petAge)) reasons.push(`Suitable for selected age: ${criteria.petAge}.`);
-  else if (criteria.petAge && !product.suitability.petAges?.length) limitations.push("Pet-age suitability has not been verified.");
+  if (criteria.petAge && product.suitability.petAges?.includes(criteria.petAge))
+    reasons.push(`Suitable for selected age: ${criteria.petAge}.`);
+  else if (criteria.petAge && !product.suitability.petAges?.length)
+    limitations.push("Pet-age suitability has not been verified.");
 
   for (const [key, expected] of preferences) {
-    if (product.specifications[key] === expected) { matched += 1; reasons.push(`Matches preference: ${key}.`); }
-    else if (!(key in product.specifications)) limitations.push(`No verified data for ${key}.`);
+    if (product.specifications[key] === expected) {
+      matched += 1;
+      reasons.push(`Matches preference: ${key}.`);
+    } else if (!(key in product.specifications)) limitations.push(`No verified data for ${key}.`);
   }
 
   const baseScore = preferences.length ? Math.round((matched / preferences.length) * 100) : 0;

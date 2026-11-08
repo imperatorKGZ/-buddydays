@@ -8,5 +8,9 @@ export const metadata: Metadata = createPageMetadata(
 );
 
 export default function CatsPage() {
-  return <BlogBrowser variant="page" initialSpecies="cats" />;
+  return (
+    <main>
+      <BlogBrowser variant="page" initialSpecies="cats" />
+    </main>
+  );
 }

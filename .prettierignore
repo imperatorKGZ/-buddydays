@@ -1,0 +1,13 @@
+node_modules
+.next
+coverage
+playwright-report
+test-results
+buddydays-audit-fix
+.patch-backups
+patches
+*.patch
+apply-buddydays-mobile-refinement.mjs
+homepage.spec.ts
+homepage-responsive.spec.ts
+src/data/blog/articles.ts

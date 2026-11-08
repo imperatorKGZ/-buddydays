@@ -19,6 +19,13 @@
 6. Verify the canonical route `/blog/{species}/{category}/{slug}`, related category links, metadata, and sitemap entry.
 7. Never mark an outline-only preview as published.
 
+## Required verification
+
+Run `npm run content:validate` before opening a pull request. The validator
+checks slugs, taxonomy, dates, required metadata, and the requirements for
+published records without modifying article data. Each published article needs
+rights-cleared imagery and meaningful alt text before it is released.
+
 ## Browser behavior
 
 - Search matches title, excerpt, category, and tags.

@@ -1,9 +1,7 @@
 export const emergencyHelpResources = {
-  googleMapsSearchUrl:
-    "https://www.google.com/maps/search/?api=1&query=24-hour+emergency+veterinarian+near+me",
+  googleMapsSearchUrl: "https://www.google.com/maps/search/?api=1&query=24-hour+emergency+veterinarian+near+me",
   petHelpFinderUrl: "https://www.pethelpfinder.org/m/phf",
-  aahaHospitalLocatorUrl:
-    "https://www.aaha.org/for-pet-parents/find-an-aaha-accredited-animal-hospital-near-me/",
+  aahaHospitalLocatorUrl: "https://www.aaha.org/for-pet-parents/find-an-aaha-accredited-animal-hospital-near-me/",
   aspcaPoisonControl: {
     name: "ASPCA Poison Control",
     displayPhone: "(888) 426-4435",

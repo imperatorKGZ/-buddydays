@@ -2,7 +2,11 @@ import "server-only";
 import { allProducts } from "@/data";
 import type { Product, PetSpecies } from "@/types/product";
 
-export interface ProductQuery { species?: PetSpecies; category?: string; status?: Product["status"]; }
+export interface ProductQuery {
+  species?: PetSpecies;
+  category?: string;
+  status?: Product["status"];
+}
 export const productRepository = {
   async findMany(query: ProductQuery = {}): Promise<Product[]> {
     return allProducts.filter((product) => {

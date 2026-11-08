@@ -1,0 +1,102 @@
+diff --git a/src/components/emergency-help/emergency-pet-help.module.css b/src/components/emergency-help/emergency-pet-help.module.css
+index 08dd5e9..e08b61e 100644
+--- a/src/components/emergency-help/emergency-pet-help.module.css
++++ b/src/components/emergency-help/emergency-pet-help.module.css
+@@ -11,25 +11,29 @@
+ 
+ .trigger {
+   display: inline-flex;
+-  min-height: 44px;
++  box-sizing: border-box;
++  min-width: 44px;
++  height: 44px;
+   align-items: center;
+   justify-content: center;
+-  gap: 8px;
+-  padding: 0 15px;
+-  border: 1px solid rgb(255 255 255 / 16%);
++  gap: 0;
++  padding: 0 12px;
++  overflow: hidden;
++  border: 1px solid rgb(255 255 255 / 22%);
+   border-radius: 999px;
+   background: #365b49;
+   color: #fff;
+-  box-shadow: 0 4px 15px rgb(38 52 45 / 14%);
+-  font-size: 11px;
++  box-shadow: 0 0 0 3px rgb(250 247 241 / 85%), 0 6px 18px rgb(38 52 45 / 20%);
++  font-size: 12px;
+   font-weight: 750;
++  white-space: nowrap;
+   cursor: pointer;
+   transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+ }
+ 
+ .trigger:hover {
+   background: #284737;
+-  box-shadow: 0 6px 18px rgb(38 52 45 / 18%);
++  box-shadow: 0 0 0 3px rgb(250 247 241 / 90%), 0 8px 20px rgb(38 52 45 / 24%);
+   transform: translateY(-1px);
+ }
+ 
+@@ -46,27 +50,36 @@
+   font-size: 10px;
+ }
+ 
+-@media (max-width: 760px) {
+-  .root {
+-    right: calc(14px + env(safe-area-inset-right, 0px));
+-    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+-  }
++.triggerLabel {
++  max-width: 0;
++  margin-left: 0;
++  overflow: hidden;
++  opacity: 0;
++  transition: max-width .22s ease, margin-left .22s ease, opacity .16s ease;
++}
+ 
+-  .trigger {
+-    width: 46px;
+-    height: 46px;
+-    min-height: 46px;
+-    padding: 0;
+-    border-radius: 50%;
++/* Desktop with a mouse: icon-only at rest, the label slides out on hover/focus.
++   Touch devices stay icon-only, so the button never covers content. */
++@media (hover: hover) and (pointer: fine) {
++  .trigger:hover .triggerLabel,
++  .trigger:focus-visible .triggerLabel {
++    max-width: 180px;
++    margin-left: 8px;
++    opacity: 1;
+   }
++}
+ 
++@media (prefers-reduced-motion: reduce) {
++  .trigger,
+   .triggerLabel {
+-    display: none;
++    transition: none;
+   }
++}
+ 
+-  .triggerIcon {
+-    width: 20px;
+-    height: 20px;
++@media (max-width: 760px) {
++  .root {
++    right: calc(14px + env(safe-area-inset-right, 0px));
++    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+   }
+ }
+ 
+@@ -86,8 +99,2 @@
+ 
+-  .trigger {
+-    width: 44px;
+-    height: 44px;
+-    min-height: 44px;
+-  }
+-
+   .panel {

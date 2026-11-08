@@ -1,13 +1,21 @@
 import type { BlogArticle } from "@/data/blog/articles";
 
 export function searchBlogArticles(articles: readonly BlogArticle[], query: string): BlogArticle[] {
-  const normalized = query.trim().toLocaleLowerCase("en-US");
+  const normalized = normalizeSearchText(query);
   if (!normalized) return [...articles];
 
   return articles.filter((article) =>
-    [article.title, article.excerpt, article.category, ...article.tags]
-      .join(" ")
-      .toLocaleLowerCase("en-US")
-      .includes(normalized),
+    normalizeSearchText([article.title, article.excerpt, article.category, ...article.tags].join(" ")).includes(
+      normalized,
+    ),
   );
+}
+
+export function normalizeSearchText(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/\s+/gu, " ")
+    .trim()
+    .toLocaleLowerCase("en-US");
 }
